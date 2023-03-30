@@ -11,9 +11,9 @@ const port = process.env.PORT || 3000;
 app.use(helmet());
 
 const whitelist = [
-  'https://notaclinica.com/',
-  'https://darudaniel.github.io/',
-  'http://localhost:3000/',
+  'https://notaclinica.com',
+  'https://darudaniel.github.io',
+  'http://localhost:3000',
 ]
 const options = {
   origin: (origin, callback) => {
