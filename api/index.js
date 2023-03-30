@@ -26,9 +26,11 @@ app.use(helmet());
 // }
 app.use(bodyParser.json());
 // app.use(cors(options))
-app.use(cors({
+const options = {
   origin: 'https://darudaniel.github.io'
-}));
+};
+
+app.use(cors(options));
 
 
 routerApi(app)
