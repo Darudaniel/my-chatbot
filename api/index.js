@@ -8,26 +8,53 @@ const routerApi = require('./routes')
 //Initialize the app
 const app = express();
 const port = process.env.PORT || 3000;
-routerApi(app)
 
 app.use(helmet());
 
-const whitelist = [
-  'https://notaclinica.com',
-  'https://darudaniel.github.io',
-  'http://localhost:3000',
-]
-const options = {
-  origin: (origin, callback) => {
-    if (whitelist.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Dominio no permitido'));
-    }
-  }
-}
+// const whitelist = [
+//   'https://notaclinica.com',
+//   'https://darudaniel.github.io',
+//   'http://localhost:3000',
+// ]
+// const options = {
+//   origin: (origin, callback) => {
+//     if (whitelist.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Dominio no permitido'));
+//     }
+//   }
+// }
+
+// var corsOptions = {
+//   origin: function (origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true)
+//     } else {
+//       callback(new Error('Not allowed by CORS'))
+//     }
+//   }
+// }
+
+// const whitelist = [
+//   'https://notaclinica.com',
+//   'https://darudaniel.github.io',
+//   'http://localhost:3000',
+// ]
+
+// var corsOptions = {
+//   origin: function (origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true)
+//     } else {
+//       callback(new Error('Not allowed by CORS'))
+//     }
+//   }
+// }
+
+app.use(cors())
 app.use(bodyParser.json());
-app.use(cors(options))
+// app.use(cors(options))
 
 // app.use(cors({ origin: whitelist }))
 
@@ -49,6 +76,7 @@ app.use(cors(options))
 // app.use(cors(corsOptions));
 
 
+routerApi(app)
 
 //Listener
 app.listen(port, () => {
