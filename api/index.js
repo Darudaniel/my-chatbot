@@ -27,7 +27,7 @@ app.use(helmet());
 app.use(bodyParser.json());
 // app.use(cors(options))
 // Definir una lista blanca de dominios permitidos
-const whitelist = ['https://darudaniel.github.io'];
+const whitelist = ['https://darudaniel.github.io/nota-clinica'];
 
 // Opciones de configuración de cors
 const corsOptions = {
