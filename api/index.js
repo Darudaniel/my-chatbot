@@ -25,7 +25,7 @@ const options = {
   }
 }
 app.use(bodyParser.json());
-app.use(cors())
+app.use(cors(options))
 
 
 routerApi(app)
