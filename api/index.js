@@ -12,7 +12,7 @@ app.use(helmet());
 
 const whitelist = [
   'https://notaclinica.com/',
-  'https://darudaniel.github.io/nota-clinica/',
+  'https://darudaniel.github.io/',
   'http://localhost:3000/',
 ]
 const options = {
