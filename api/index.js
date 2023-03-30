@@ -12,20 +12,20 @@ const port = process.env.PORT || 3000;
 
 app.use(helmet());
 
-// const whitelist = [
-//   'https://notaclinica.com',
-//   'https://darudaniel.github.io',
-//   'http://localhost:3000',
-// ]
-// const options = {
-//   origin: (origin, callback) => {
-//     if (whitelist.includes(origin)) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error('Dominio no permitido'));
-//     }
-//   }
-// }
+const whitelist = [
+  'https://notaclinica.com',
+  'https://darudaniel.github.io',
+  'http://localhost:3000',
+]
+const options = {
+  origin: (origin, callback) => {
+    if (whitelist.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Dominio no permitido'));
+    }
+  }
+}
 
 // var corsOptions = {
 //   origin: function (origin, callback) {
@@ -53,10 +53,10 @@ app.use(helmet());
 //   }
 // }
 
-app.use(cors())
 app.use(timeout('120s'));
 app.use(bodyParser.json());
-// app.use(cors(options))
+// app.use(cors())
+app.use(cors(options))
 
 // app.use(cors({ origin: whitelist }))
 
