@@ -26,11 +26,22 @@ app.use(helmet());
 // }
 app.use(bodyParser.json());
 // app.use(cors(options))
-const options = {
-  origin: 'https://darudaniel.github.io'
-};
+// Definir una lista blanca de dominios permitidos
+const whitelist = ['https://darudaniel.github.io'];
 
-app.use(cors(options));
+// Opciones de configuración de cors
+const corsOptions = {
+  origin: function(origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+
+// Habilitar cors con las opciones de configuración
+app.use(cors(corsOptions));
 
 
 routerApi(app)
