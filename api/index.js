@@ -1,4 +1,5 @@
 const express = require('express');
+const dotenv = require('dotenv').config();
 const helmet = require("helmet");
 const bodyParser = require('body-parser')
 const cors = require('cors')
@@ -6,7 +7,7 @@ const routerApi = require('./routes')
 
 //Initialize the app
 const app = express();
-const port = 3080;
+const port = process.env.PORT || 3000;
 app.use(helmet());
 
 const whitelist = [
