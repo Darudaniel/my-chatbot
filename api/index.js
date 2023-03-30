@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv').config();
 const helmet = require("helmet");
+const timeout = require('connect-timeout');
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const routerApi = require('./routes')
@@ -53,6 +54,7 @@ app.use(helmet());
 // }
 
 app.use(cors())
+app.use(timeout('120s'));
 app.use(bodyParser.json());
 // app.use(cors(options))
 
