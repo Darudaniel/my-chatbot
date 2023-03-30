@@ -8,6 +8,8 @@ const routerApi = require('./routes')
 //Initialize the app
 const app = express();
 const port = process.env.PORT || 3000;
+routerApi(app)
+
 app.use(helmet());
 
 const whitelist = [
@@ -15,19 +17,19 @@ const whitelist = [
   'https://darudaniel.github.io',
   'http://localhost:3000',
 ]
-// const options = {
-//   origin: (origin, callback) => {
-//     if (whitelist.includes(origin)) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error('Dominio no permitido'));
-//     }
-//   }
-// }
+const options = {
+  origin: (origin, callback) => {
+    if (whitelist.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Dominio no permitido'));
+    }
+  }
+}
 app.use(bodyParser.json());
-// app.use(cors(options))
+app.use(cors(options))
 
-app.use(cors({ origin: whitelist }))
+// app.use(cors({ origin: whitelist }))
 
 // Definir una lista blanca de dominios permitidos
 // const whitelist = ['https://darudaniel.github.io'];
@@ -44,10 +46,9 @@ app.use(cors({ origin: whitelist }))
 // }
 
 // Habilitar cors con las opciones de configuración
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 
-routerApi(app)
 
 //Listener
 app.listen(port, () => {
